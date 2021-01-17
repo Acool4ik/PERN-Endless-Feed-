@@ -8,19 +8,23 @@ const __dirname = path.resolve()
 
 
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'client', 'build')))
+// app.use(express.static(path.join(__dirname, 'client', 'build')))
 
 
 // app.get('/backend/download', (req, res) => {
 //     res.download(path.join(__dirname, 'storage', '10.png'))
 // })
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+// })
 
-app.get('/backend/*', (req, res) => {
-    res.status(200).json({payload: 'ok'})
+// app.get('/backend/*', (req, res) => {
+//     res.status(200).json({payload: 'ok'})
+// })
+
+app.get('/', (req, res) => {
+    res.json({payload: 'ok'})
 })
 
 
