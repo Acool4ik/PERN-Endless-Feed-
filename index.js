@@ -9,17 +9,23 @@ const __dirname = path.resolve()
 
 
 const app = express()
+app.use(express.json())
+app.use(favicon(__dirname + '/build/favicon.ico'))
+app.use(express.static(path.join(__dirname, 'build')))
 
 
 app.get('/', (req, res) => {
-    res.json({payload: 'home page'})
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
+app.get('/frontend*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 
-app.get('/about', (req, res) => {
-    res.json({payload: 'about page'})
+app.get('/backend*', (req, res) => {
+    res.json({payload: 'bakend api'})
 })
-
 
 
 app.listen(PORT, () => { console.log(`Server has been starten on PORT=${PORT}...`) })
