@@ -10,7 +10,6 @@ const __dirname = path.resolve()
 
 const app = express()
 app.use(express.json())
-app.use(favicon(__dirname + '/build/favicon.ico'))
 app.use(express.static(path.join(__dirname, 'build')))
 
 
