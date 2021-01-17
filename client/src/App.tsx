@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const baseurl = process.env.REACT_APP_BASE_URL
 
   return (
     <div className="App">
@@ -21,9 +20,6 @@ function App() {
           Learn React
         </a>
 
-        {/* <a href={`${baseurl}/backend/download`} download>
-        download
-        </a> */}
       </header>
     </div>
   );

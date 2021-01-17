@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-console.log(process.env.REACT_APP_WEBSITE_NAME);
+console.log('REACT_APP_WEBSITE_NAME', process.env.REACT_APP_WEBSITE_NAME);
 console.log('PUBLIC_URL', process.env.PUBLIC_URL);
 console.log('REACT_APP_BASE_URL', process.env.REACT_APP_BASE_URL);
 
