@@ -1,64 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
+import { Route, BrowserRouter } from 'react-router-dom'
 
-import { useRequest } from './hooks/useRequest'
-import { useMessage, EColorMessage } from './hooks/useMessage'
-import { useTooltip, EPosition } from './hooks/useTooltip'
-import { randomKeyGenerator, useModal } from './hooks/useModal'
+import {useAuth} from './hooks/useAuth'
+import { useLS } from './hooks/useLS'
+import { useLogger } from './devHooks/useLogger'
+import {useReader_Image, EForward} from './readers/useReader_Image'
+
 
 
 export const App = () => {
-	const [request, loader, unzip, bundler] = useRequest()
-	const message = useMessage()
-	const toolpip = useTooltip()
-	const [ Modal, Button] = useModal()
+	const [auth, setAuth] = useState(true)
+	const [IsAuthenticated, NotAuthenticated] = useAuth(auth)
+	// const { get, set, remove } = useLS()
+	const { _warning, _error, _success, _table } = useLogger()
+	const {ReaderForward} = useReader_Image()
 	
-	
+	const handler = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
-	randomKeyGenerator()
+		if(e.target.files![0]) {
+			const result = await ReaderForward(e.target.files![0], EForward.FILE_TO_URL)
+			console.log('result::', result)
+		}
+	}
 
-	console.log(process.env.REACT_APP_BASE_URL)
-
-
-	useEffect(() => {
-		
-			var elems = document.querySelectorAll('.modal');
-			M.Modal.init(elems)
-		
-	}, [])
-
-	
-
-	
 
     return (
+	<BrowserRouter>
 	<section className="container">
-		<div className="row">
-            <div className="col s12">
-				
+		
+	<IsAuthenticated redirectPath={'/'}>
+		<Route path={'/'}>
+			{/* <button onClick={handler}>
+				show get api
+			</button> */}
 
-			    
-			    <div {...Modal()}>
-                    <div className="modal-content">
-                        <h4>Modal Header</h4>
-                        <p>A bunch of text</p>
-                    </div>
-                    <div className="modal-footer">
-						<a href="#!" 
-						    className="modal-close waves-effect waves-green btn-flat"
-						>
-							Agree
-						</a>
-                    </div>
-                </div>
+			<input type="file" onChange={handler} />
+		</Route>
+	</IsAuthenticated>
 
-				<button {...Button()}>
-					modal
-				</button>
-
-				
-			</div>
-		</div>
+	<NotAuthenticated redirectPath={'/'}>
+		<Route path={'/'} children={<button onClick={() => setAuth(true)}>not auth</button>} />
+	</NotAuthenticated>
+	
 	</section>
+	</BrowserRouter>
     )
 }
 
