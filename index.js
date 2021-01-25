@@ -9,12 +9,10 @@ const PORT = process.env.PORT || config.get("PORT")
 const __dirname = path.resolve()
 
 
-
 const app = express()
 app.use(express.json())
 app.use(favicon(path.join(__dirname, 'client', 'build', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'client', 'build')))
-
 
 
 app.get('/backend*', (req, res) => {

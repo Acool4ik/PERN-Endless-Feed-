@@ -1,27 +1,56 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, BrowserRouter } from 'react-router-dom'
 
 import {useAuth} from './hooks/useAuth'
-import { useLS } from './hooks/useLS'
-import { useLogger } from './devHooks/useLogger'
-import {useReader_Image, EForward} from './readers/useReader_Image'
-
+import {useReader_Image} from './readers/useReader_Image'
 
 
 export const App = () => {
 	const [auth, setAuth] = useState(true)
 	const [IsAuthenticated, NotAuthenticated] = useAuth(auth)
-	// const { get, set, remove } = useLS()
-	const { _warning, _error, _success, _table } = useLogger()
-	const {ReaderForward} = useReader_Image()
+	
+	const {readerForward, loading} = useReader_Image()
 	
 	const handler = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
 		if(e.target.files![0]) {
-			const result = await ReaderForward(e.target.files![0], EForward.FILE_TO_URL)
-			console.log('result::', result)
+			readerForward(e.target.files![0])
 		}
+
 	}
+
+	useEffect(() => {
+		// @ts-ignore
+		console.log('result::', window.$)
+
+		// @ts-ignore
+		if(window.$ && window.$.URL_IMAGE) {
+
+			
+            // @ts-ignore
+			fetch(window.$.URL_IMAGE).then(async r => {
+				const blob = await r.blob()
+				console.log(blob instanceof Blob)
+				console.log('Blob from fetch', blob)
+				
+				
+				const file = new File([blob], 'test', {type: blob.type})
+				console.log(file instanceof File)
+				console.log('File from blob', file)
+
+				
+				
+				
+			})
+			
+
+			
+		}
+		
+		
+		
+	}, [loading])
+
 
 
     return (
