@@ -1,4 +1,6 @@
 {
     "PORT_HTTP": "8080",
-    "PORT_HTTPS": "80"
+    "PORT_HTTPS": "80",
+    "JWTSecretKey": "JWTSecretKey",
+    "BASE_URL": "http://localhost:8080"
 }

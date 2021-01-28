@@ -11,7 +11,7 @@ const __dirname = path.resolve()
 
 const app = express()
 app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 app.use(favicon(path.join(__dirname, 'client', 'build', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'client', 'build')))
 
