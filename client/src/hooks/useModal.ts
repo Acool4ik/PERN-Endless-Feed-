@@ -52,5 +52,3 @@ export function randomKeyGenerator(): string {
 
     return randomKey.toUpperCase()
 }
-
-

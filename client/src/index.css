@@ -1,1 +1,39 @@
-@import "~materialize-css/dist/css/materialize.min.css"
+@import "~materialize-css/dist/css/materialize.min.css";
+
+:root {
+    --black-background-color:  #18191a;
+    --white-color: #adadad;
+    --purple-color: #730c9a;
+    --green-color: rgb(166, 226, 46);
+}
+
+body {
+    background-color: var(--black-background-color);
+    color: var(--white-color);
+}
+
+.authform-margin-top {
+    position: relative;
+    top: 50Vh;
+    transform: translateY(-50%);
+}
+
+.border {
+    background-color: transparent;
+    border: 1px solid var(--white-color);
+    color: var(--white-color);
+    transition: color, border 0.3s linear;
+}
+
+.border:hover {
+    background-color: transparent;
+    border: 1px solid var(--purple-color);
+    color: var(--purple-color);
+    transition: color, border 0.3s linear;
+}
+
+.verticle-margin {
+    margin-top: 2rem 0;
+    padding-left: 0;
+    padding-right: 0;
+}

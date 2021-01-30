@@ -2,5 +2,8 @@
     "PORT_HTTP": "8080",
     "PORT_HTTPS": "80",
     "JWTSecretKey": "JWTSecretKey",
-    "BASE_URL": "http://localhost:8080"
+    "BASE_URL_DEV": "http://localhost:8080/",
+    "BASE_URL": "https://dry-journey-65954.herokuapp.com/",
+    "SALT": 10,
+    "REFRESH": "REFRESH"
 }

@@ -112,16 +112,13 @@ export const useLS = () => {
             } 
                
             function setState(length: number, immutable: any, setUpDate: object | TPrimitive): any {
-                let currentStepDate = {...immutable}
+                let currentStepDate;
+
+                (immutable instanceof Array) && (currentStepDate = [...immutable])
+                !(immutable instanceof Array) && (currentStepDate = {...immutable})
 
                 for(let i = 1; i < length; i++) {
-                    const isNumber = Number(pathArray[i])
-                    
-                    if(typeof isNumber === 'number' && !isNaN(isNumber)) {
-                        currentStepDate = currentStepDate[isNumber]
-                    } else {
-                        currentStepDate = currentStepDate[pathArray[i]]
-                    }
+                    currentStepDate = currentStepDate[pathArray[i]]
                 }
 
                 currentStepDate[pathArray[length]] = setUpDate

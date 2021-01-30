@@ -12,6 +12,7 @@ export enum ELoaderColor {
     blue = 'spinner-red-only'
 }
 
+
 interface ILoader {
     children?: React.ReactNode,
     isCircle?: boolean,

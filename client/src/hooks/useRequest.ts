@@ -5,7 +5,7 @@ type TBody = string | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearc
 type THeaders = Headers | string[][] | Record<string, string> | undefined
 
 type TBundler = (body: object) => string
-type TUnzip = (data: Response) => Promise<object>
+type TUnzip = (data: Response) => Promise<any>
 
 type TRequest = (
     url: string, method?: string, body?: TBody, headers?: THeaders, otherProps?: object
@@ -24,8 +24,9 @@ export const useRequest: TUseRequest = () => {
         setLoader(true)
 
         try {
+            const baseURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BASE_URL : ''
 
-            const response = await fetch(url, {
+            const response = await fetch(baseURL + url, {
                 method, body, headers, ...otherProps
             })
 
@@ -49,7 +50,7 @@ export const useRequest: TUseRequest = () => {
             
         } 
 
-    }, [_error]) 
+    }, [_error, _success]) 
 
 
     const bundler: TBundler = useCallback((body = {}) => {
