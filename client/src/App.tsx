@@ -34,7 +34,7 @@ export const App = () => {
 
 	<NotAuthenticated redirectPath={'/'}>
 	    {/* <Route path={'/'} children={ <EmailPasswordForm />} /> */}
-	    <Route path={'/'} children={ <Test/>} />
+	    <Route path={'/'} children={ <Test/> } />
 	</NotAuthenticated>
 	
 	</section>

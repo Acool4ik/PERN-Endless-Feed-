@@ -1,7 +1,9 @@
-import {reduser1, reduser2} from './redusers/rootReduser'
+export interface IInitialState {
+    state1: string,
+    state2: number
+}
 
-
-export const initialState = {
-    reduser1: {value: 'reduser1'},
-    reduser2: {value: 'reduser2'}
+export const initialState: IInitialState = {
+    state1: 'test1 initial', 
+    state2: 9999
 }
