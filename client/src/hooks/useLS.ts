@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useLogger } from '../devHooks/useLogger'
+import { useLogger } from './useLogger'
 
 type TPrimitive = string | number | boolean
 type TGet = (path: string) => object | TPrimitive | undefined

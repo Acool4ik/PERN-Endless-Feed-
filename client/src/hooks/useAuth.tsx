@@ -3,9 +3,10 @@ import { Switch, Redirect } from 'react-router-dom'
 
 
 interface IAuth {
-    children: JSX.Element,
+    children: React.ReactNode,
     redirectPath: string
 }
+
 
 type TAuthHandlers = (props: IAuth) =>  JSX.Element | null
 type TUseAuth = (isAuth: boolean) => [TAuthHandlers, TAuthHandlers]
@@ -41,11 +42,14 @@ export const useAuth: TUseAuth = (isAuth = false) => {
 
         if(!isAuth) {
             return <Switch>
-                
+            
                 {
-                    React.Children.map(children, (child) => child)
+                    React.Children.map(children, (child) => {
+                        console.log(child);
+                        return child
+                    })
                 }
-
+                
                 <Redirect to={process.env.PUBLIC_URL + redirectPath} />
             </Switch>
         } else {

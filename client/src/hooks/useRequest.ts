@@ -1,5 +1,5 @@
 import {useState, useCallback} from 'react'
-import {useLogger} from '../devHooks/useLogger'
+import {useLogger} from './useLogger'
 
 type TBody = string | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearchParams | ReadableStream<Uint8Array> | null | undefined
 type THeaders = Headers | string[][] | Record<string, string> | undefined

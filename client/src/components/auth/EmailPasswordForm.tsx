@@ -1,3 +1,6 @@
+/// <reference path="../../react-app-env.d.ts" />
+import {Auth} from '../../react-app-env'
+
 // Core Imports
 import React, {useState, useEffect, useRef, useContext} from 'react'
 
@@ -12,7 +15,7 @@ import {useRequest} from '../../hooks/useRequest'
 import {Loader} from '../general/Loader'
 
 // Supporting tools
-import {EAuthPaths, IAuthDataEmailPassrord} from '../../pathsRequest/auth.paths'
+import {EAuthPaths} from '../../paths/general'
 
 
 export const EmailPasswordForm: React.FC = () => {
@@ -66,7 +69,7 @@ export const EmailPasswordForm: React.FC = () => {
                 const response = await request(EAuthPaths.AUTH_EMAIL_PASSWORD_LOGIN, 'POST', formData)
                 
                 if(response.ok) {
-                    const {payload, message: report} = await unzip(response) as IAuthDataEmailPassrord
+                    const {payload, message: report} = await unzip(response) as Auth.IAuthDataEmailPassrord
                     message(report, EColorMessage.green)
 
                     setDisabled(false)
@@ -106,7 +109,7 @@ export const EmailPasswordForm: React.FC = () => {
                 const response = await request(EAuthPaths.AUTH_EMAIL_PASSWORD_SIGNUP, 'POST', formData)
                 
                 if(response.ok) {
-                    const {payload, message: report} = await unzip(response) as IAuthDataEmailPassrord
+                    const {payload, message: report} = await unzip(response) as Auth.IAuthDataEmailPassrord
                     message(report, EColorMessage.green)
 
                     setDisabled(false)

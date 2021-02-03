@@ -1,5 +1,5 @@
 // Core Imports
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import { Route, BrowserRouter } from 'react-router-dom'
 
 // Redux
@@ -18,10 +18,10 @@ import Test from './components/text'
 
 
 export const App = () => {
-	const [auth, setAuth] = useState(false)
+	const [auth, setAuth] = useState(true)
 	const [IsAuthenticated, NotAuthenticated] = useAuth(auth)
 
-	
+
     return (
 	<BrowserRouter>
 	<Provider store={store} >
@@ -29,12 +29,14 @@ export const App = () => {
 	<section className="container">
 		
 	<IsAuthenticated redirectPath={'/'}>
+	    <Route path={'/test'} children={<button onClick={() => setAuth(false)}>not auth</button>} />
 	    <Route path={'/'} children={<button onClick={() => setAuth(false)}>not auth</button>} />
 	</IsAuthenticated>
 
-	<NotAuthenticated redirectPath={'/'}>
-	    {/* <Route path={'/'} children={ <EmailPasswordForm />} /> */}
-	    <Route path={'/'} children={ <Test/> } />
+	<NotAuthenticated redirectPath={'/test'}>
+        <Route path={'/test/2'} children={ <Test/> } />
+	    <Route path={'/test'} children={ <Test/> } />
+	    <Route path={'/'} children={ <EmailPasswordForm />} />
 	</NotAuthenticated>
 	
 	</section>
