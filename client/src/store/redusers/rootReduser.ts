@@ -1,36 +1,36 @@
+/// <reference path="../../react-app-env.d.ts" />
+import {State} from '../../react-app-env'
+
 import {combineReducers, Reducer} from 'redux'
-import {ACTION_1, ACTION_2} from '../actions/actions'
+import {initialState} from '../initialState'
+import {CHANGE_PROFILE} from '../actions/actions'
 
 
-export interface IActionReduser1 {
-    value: string,
-    type: string
+interface IActionCreator {
+    type: string,
+    payload?: any
 }
 
-export interface IActionReduser2 {
-    value: number,
-    type: string
-}
-
-
-export const reduser1: Reducer<string, IActionReduser1> = (state = 'state1 string', action: IActionReduser1) => {
+export const personalPageReduser: Reducer<State.IUserState, IActionCreator>  = (
+    state = initialState.personalPage, action
+) => {
     switch(action.type) {
-        case ACTION_1: return action.value;
-
-        default: return state;
+        case CHANGE_PROFILE: return {...state, ...action.payload };
+        default: return {...state}
     }
 }
 
-const reduser2: Reducer<number, IActionReduser2> = (state = 110010, action: IActionReduser2) => {
-    switch(action.type) {
-        case ACTION_2: return action.value;
 
-        default: return state;
+export const stripsReduser: Reducer<State.IPost[], IActionCreator> = (
+    state = initialState.strips, action
+) => {
+    switch(action.type) {
+        default: return state
     }
 }
 
 
 export const rootReduser = combineReducers({
-    state1: reduser1, 
-    state2: reduser2
+    personalPage: personalPageReduser, 
+    strips: stripsReduser
 })

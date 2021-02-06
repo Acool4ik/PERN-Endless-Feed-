@@ -1,0 +1,27 @@
+:root {
+    --black-background-color:  #18191a;
+}
+
+.bcNavbar {
+    background-color: var(--black-background-color) !important;
+    z-index: 100;
+}
+
+.btnHover {
+    transition: all 0.3s linear;
+}
+
+.btnHover > li:hover {
+    background-color:rgba(255,255,255,0.25);
+}
+
+.logoHover {
+    display: block;
+    transition: all 0.3s linear;
+    padding: 0 .4rem !important;
+}
+
+
+.logoHover:hover {
+    background-color:rgba(255,255,255,0.25);
+}

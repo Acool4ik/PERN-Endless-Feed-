@@ -1,0 +1,15 @@
+:root {
+    --purple-color: #730c9a;
+    --black-background-color:  #18191a;
+}
+
+.description {
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.wrapperChat {
+    padding: 0.5rem !important;
+}

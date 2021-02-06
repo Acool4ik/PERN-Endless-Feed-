@@ -14,7 +14,9 @@ import {AuthEmailPasswordSate} from './context/AuthEmailPassword/AuthEmailPasswo
 
 // Castom Components
 import {EmailPasswordForm} from './components/auth/EmailPasswordForm'
-import Test from './components/text'
+import UserPage from './components/pages/UserPage'
+import {Strips} from './components/pages/Strips'
+import {Navbar} from './components/pages/Navbar'
 
 
 export const App = () => {
@@ -28,14 +30,17 @@ export const App = () => {
 	<AuthEmailPasswordSate setAuth={setAuth} >
 	<section className="container">
 		
-	<IsAuthenticated redirectPath={'/'}>
-	    <Route path={'/test'} children={<button onClick={() => setAuth(false)}>not auth</button>} />
-	    <Route path={'/'} children={<button onClick={() => setAuth(false)}>not auth</button>} />
+	<IsAuthenticated redirectPath={'/frontend/page/1'}>
+	    <Route path="/frontend">
+		    <Navbar />
+		    <Route path={'/frontend/page/:id'} children={<UserPage />} />
+	        <Route path={'/frontend/strips'} children={<Strips />} />
+		</Route>
 	</IsAuthenticated>
 
 	<NotAuthenticated redirectPath={'/test'}>
-        <Route path={'/test/2'} children={ <Test/> } />
-	    <Route path={'/test'} children={ <Test/> } />
+        {/* <Route path={'/test/2'} children={ <Test/> } /> */}
+	    {/* <Route path={'/test'} children={ <Test/> } /> */}
 	    <Route path={'/'} children={ <EmailPasswordForm />} />
 	</NotAuthenticated>
 	

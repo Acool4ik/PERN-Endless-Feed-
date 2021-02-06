@@ -37,3 +37,23 @@ body {
     padding-left: 0;
     padding-right: 0;
 }
+
+.fixed-navbar-top {
+    position: fixed;
+    width: 100vw;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+
+.sidenav li>a.active {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.nav-wrapper  ul li > a.active {
+    background-color: rgba(255,255,255,0.5);
+}
+
+.padding-top-navbar {
+    padding-top: calc(70px + 1.2rem);
+}

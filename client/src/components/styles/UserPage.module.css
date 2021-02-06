@@ -1,0 +1,119 @@
+:root {
+    --white-color: #ffffff;
+    --purple-color: #730c9a;
+}
+
+.image {
+    border-radius: 50%;
+    display: block;
+    height: 150px;
+    width: 150px;
+}
+
+.status {
+    width: calc(7px + 1rem);
+    height: calc(7px + 1rem);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    z-index: 10;
+    background-color: green;
+}
+
+.statusOffline {
+    width: calc(7px + 1rem);
+    height: calc(7px + 1rem);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    z-index: 10;
+    background-color: red;
+}
+
+.wrapperImageStatus {
+    width: 150px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.verticalMargins {
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.name {
+    color: var(--white-color);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.email {
+    color: var(--white-color);
+    font-style: italic;
+    text-decoration: none;
+    transition: all 0.3s linear;
+}
+
+.email:hover {
+    color: var(--purple-color);
+}
+
+.statusText {
+    color: var(--white-color);
+    font-style: italic;
+    line-height: 145%;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: var(--white-color);
+    display: block;
+    margin-left: 0.1rem;
+    margin-right: 1.3rem;
+    transition: all 0.3s linear;
+}
+
+.wrapperCircle:hover {
+    color: var(--purple-color);
+    border-bottom-color: var(--purple-color) !important;
+}
+
+.wrapperCircle:hover > span {
+    background-color: var(--purple-color);
+}
+
+
+.wrapperCircle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.padding {
+    padding: 0 !important;
+}
+
+.formEditor {
+    border: 1px solid white;
+    border-radius: 3px;
+    color: white;
+    padding: 0.5rem !important;
+}
+
+
+.btnSubmit {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    width: 90% !important;
+    position: relative;
+    transform: translateX(5%);
+}

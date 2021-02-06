@@ -1,0 +1,85 @@
+:root {
+    --purple-color: #730c9a;
+    --black-background-color:  #18191a;
+}
+
+.wrapperHeader  {
+    padding: 0.5rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapperHeader > div > i {
+    color: white;
+    transition: all 0.3s linear;
+}
+
+.wrapperHeader > div > i:hover {
+    color: var(--purple-color)
+}
+
+.wrapperHeader > span:hover {
+    color: var(--purple-color)
+}
+
+.author {
+    font-style: italic;
+    transition: all 0.3s linear;
+    font-size: calc(12px + 0.4rem) !important;
+    margin-bottom: 0 !important;
+}
+
+.author:hover {
+    color: var(--purple-color);
+    text-decoration: underline;
+}
+
+.dropDown {
+    border-radius: 5px;
+    background-color: var(--black-background-color);
+    border: 1px solid white;
+    color: white;
+    transition: all 0.3s linear;
+}
+
+.dropDown:hover {
+    border: 1px solid var(--purple-color);
+}
+
+.dropDown > li {
+    transition: all 0.3s linear;
+}
+
+.dropDown > li:hover {
+    background-color: var(--black-background-color);
+    transition: 0.3s all linear;
+}
+
+.dropDown > li > a {
+    color: white;
+    padding: 0.5rem;
+    padding-top: 0.7rem;
+}
+
+.dropDown > li > a {
+    transition: all 0.3s linear;
+}
+
+.dropDown > li > a:hover {
+    color: var(--purple-color);
+}
+
+.dropDown > li > a > i {
+    margin-right: 0.5rem;
+    transition: all 0.3s linear;
+}
+
+.dropDown > li > a:hover > i {
+    color: var(--purple-color);
+}
+
+.marginIcon {
+    margin-left: calc(1.5rem + 2vw);
+}
+

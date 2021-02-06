@@ -9,13 +9,13 @@ export enum EPosition {
 }
 
 type TPosition = EPosition.T | EPosition.R | EPosition.B | EPosition.L
-type TTooltip = (message: string, position?: TPosition, className?: string, options?: object) => object
-type TUseTooltip = () => TTooltip
+type TTooltip = (message: string, position?: TPosition) => object
+type TUseTooltip = (className?: string, options?: object) => TTooltip
  
-export const useTooltip: TUseTooltip = () => {
+export const useTooltip: TUseTooltip = (className = '', options = {}) => {
    
     const tooltip: TTooltip = useCallback((
-        message = '', position = EPosition.B, className = '', options = {}
+        message = '', position = EPosition.B
     ) => {
 
         setTimeout(() => {

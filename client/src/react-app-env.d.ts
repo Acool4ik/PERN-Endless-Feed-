@@ -34,3 +34,55 @@ export namespace Auth {
 }
 
 
+export namespace State {
+    export interface IPhoto {
+        _id: readonly string | number,
+        url: string
+    }
+
+    export interface IVideo {
+        url: string,
+        type: string
+    } 
+
+    export interface ILike {
+        uid: readonly string | number,
+        name: string,
+        avatar?: string
+    }
+
+    export interface IComment {
+        uid: readonly string | number,
+        name: string,
+        avatar?: string,
+        photo?: IPhoto,
+        video?: IVideo,
+        comment: string
+    }
+
+    export interface IPost {
+        _id: readonly string | number,
+        photos: IPhoto[],
+        video?: IVideo,
+        description?: string,
+        comments?: IComment[],
+        likes?: ILike[] 
+    }
+
+    export interface IUserState {
+        uid: readonly string | number,
+        email: readonly string,
+        name: string,
+        isOnline: boolean,
+        avatar?: string,
+        status?: string,
+        posts?: IPost[]
+    }
+
+    export interface IInitialState {
+        personalPage: IUserState, 
+        strips: IPost[]
+    }
+}
+
+
