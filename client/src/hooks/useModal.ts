@@ -12,15 +12,14 @@ export const useModal = (options = {}) => {
        
     const _id = randomKeyGenerator()
 
-
     return [
 
-        (classModal = '') => {
+        () => {
             initModal()
 
             return {
                 id: _id,
-                className: classModal + "modal",
+                className: "modal",
             }
         },
 

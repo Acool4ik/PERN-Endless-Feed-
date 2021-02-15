@@ -14,7 +14,7 @@ import {AuthEmailPasswordSate} from './context/AuthEmailPassword/AuthEmailPasswo
 
 // Castom Components
 import {EmailPasswordForm} from './components/auth/EmailPasswordForm'
-import UserPage from './components/pages/UserPage'
+import {UserPage} from './components/pages/UserPage'
 import {Strips} from './components/pages/Strips'
 import {Navbar} from './components/pages/Navbar'
 
@@ -38,9 +38,7 @@ export const App = () => {
 		</Route>
 	</IsAuthenticated>
 
-	<NotAuthenticated redirectPath={'/test'}>
-        {/* <Route path={'/test/2'} children={ <Test/> } /> */}
-	    {/* <Route path={'/test'} children={ <Test/> } /> */}
+	<NotAuthenticated redirectPath={'/'}>
 	    <Route path={'/'} children={ <EmailPasswordForm />} />
 	</NotAuthenticated>
 	

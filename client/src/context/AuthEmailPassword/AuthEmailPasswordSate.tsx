@@ -10,9 +10,9 @@ import {useLS} from '../../hooks/useLS'
 export const AuthEmailPasswordSate: React.FC<Auth.IAuthStateEmailPassword> = ({children, setAuth}) => {
     const {get, set, remove} = useLS()
 
-    const [jwt, setJwt] = useState<string>('')
-    const [refresh, setRefresh] = useState<string>('')
-    const [uid, setUid] = useState<string>('')
+    const [jwt, setJwt] = useState<string>('jwt-key-simple')
+    const [refresh, setRefresh] = useState<string>('refresh-key-simple')
+    const [uid, setUid] = useState<string>('uigj-rhge-jjgi-45hj')
 
     const SignIn = useCallback((data: Auth.IAuthDataEmailPassrord_Payload) => {
         set(LSPaths.root, data)

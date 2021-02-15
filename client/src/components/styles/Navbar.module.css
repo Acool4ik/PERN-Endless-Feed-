@@ -1,5 +1,6 @@
 :root {
     --black-background-color:  #18191a;
+    --purple-color: #730c9a;
 }
 
 .bcNavbar {
@@ -24,4 +25,60 @@
 
 .logoHover:hover {
     background-color:rgba(255,255,255,0.25);
+}
+
+.textDeletePage {
+    color: var(--black-background-color) !important;
+    font-style: italic;
+    font-size: 1.25rem !important;
+    text-decoration: none;
+    transition: all 0.3s linear;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.textDeletePage:hover {
+    text-decoration: underline;
+    color: var(--purple-color) !important;
+}
+
+.modalFooter {
+    margin-right: 3rem;
+}
+
+/* .jchchk { */
+    /* position: fixed;
+    top: 10px;
+    right: 10px;
+    transform: rotate3d(0, 0, 1, 0deg);
+    animation: jchchek 15s ease-in infinite alternate ; */
+/* } */
+
+@keyframes jchchek {
+   0% {
+       transform: rotate3d(0, 0, 1, 0deg) translateX(200px) scale(1) skew(10deg, 40deg);
+       top: 200px;
+       right: 300px;
+   }
+   25% {
+       transform: rotate3d(0, 0, 1, 1020deg) translateX(0)  scale(15) skew(-30deg, 70deg);
+       top: 200px;
+       right: calc(85vw);
+   }
+   50% {
+        transform: rotate3d(0, 0, 1, -800deg) translateX(200px)  scale(10) skew(40deg, -30deg);
+       top: calc(80vh);
+       right: calc(85vw);
+   }
+   75% {
+        transform: rotate3d(0, 0, 1, 880deg) translateX(0) scale(0.5) skew(0deg, 0deg);
+        top: calc(80vh);
+        right: 300px;
+   }
+   100% {
+        transform: rotate3d(0, 0, 1, 2320deg) translateX(200px) scale(9) skew(-40deg, 40deg);
+        top: 200px;
+        right: 300px;
+   }
 }

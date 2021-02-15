@@ -10,12 +10,21 @@
     justify-content: space-between;
 }
 
+.wrapperHeader > div > span {
+    color: white;
+    transition: all 0.3s linear;
+}
+
 .wrapperHeader > div > i {
     color: white;
     transition: all 0.3s linear;
 }
 
 .wrapperHeader > div > i:hover {
+    color: var(--purple-color)
+}
+
+.wrapperHeader > div > span:hover {
     color: var(--purple-color)
 }
 
@@ -81,5 +90,18 @@
 
 .marginIcon {
     margin-left: calc(1.5rem + 2vw);
+}
+
+.number {
+    font-style: italic;
+    font-size: 1.6rem;
+    margin-right: 0.5rem;
+    display: inline;
+    vertical-align: middle;
+}
+
+.numberWrapper {
+    display: flex;
+    align-items: center;
 }
 

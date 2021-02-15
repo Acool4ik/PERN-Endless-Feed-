@@ -1,51 +1,44 @@
-// Namespace from redux
 /// <reference path="../../react-app-env.d.ts" />
 import {State} from '../../react-app-env'
 
 // Cors imports
 import React, {useEffect, useState} from 'react'
-import {connect} from 'react-redux'
-import {Dispatch, bindActionCreators} from 'redux'
-import {changeProfileCreator} from '../../store/actionsCreators/actionCreator'
 
 // Styles module for the component
 import styles from '../styles/UserPage.module.css'
 
 // Castom component
-import {Post} from './Post'
+import {Post} from './post/Post'
+import {Loader} from '../general/Loader'
 
-// Props Interface
-interface IUserPageProps extends State.IUserState {
-    changeProfile: (name: string, status: string, avatar: string) => {
-        type: string;
-        payload: {
-            name: string;
-            status: string;
-            avatar: string;
-        }
-    }
-}
+// Castom hooks
+import {useTypedSelector} from '../../hooks/useTypedSelector'
+import {useChangeProfile} from '../../store/hooks/personalPage/useChangeProfile'
 
-const UserPage = (props: any) => {
-    const {uid, avatar, status, isOnline, posts, name, email, changeProfile} = props as IUserPageProps
-    
+
+export const UserPage = () => {
+    const personalPageState = useTypedSelector(state => state.personalPage)
+    const {avatar, status, isOnline, posts, name, email, loading} = personalPageState
+    const changeProfile = useChangeProfile()
+
+
     const [editor, setEditor] = useState<boolean>(false)
     const [nameState, setNameState] = useState<string>(name)
     const [statusState, setStatusState] = useState<string>(status || 'N/A')
-    const [avatarFile, setAvatarFile] = useState<File | null>(null)
+    const [avatarFile, setAvatarFile] = useState<File | undefined>(undefined)
 
 
     const submitProfileHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(avatarFile);
-        const formData = new FormData(e.target as HTMLFormElement)
-
-        changeProfile('testname', 'teststatus', 'https://via.placeholder.com/160')
+        try {
+            changeProfile(nameState, statusState, avatarFile)
+            setEditor(false)
+        } catch {}
     }
 
     const changeAvatarHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
-        if(files && files.length > 0) setAvatarFile(files[0])
+        files && files.length > 0 && setAvatarFile(files[0])
     }
 
     useEffect(() => {
@@ -56,6 +49,10 @@ const UserPage = (props: any) => {
     return (
     <section className="row padding-top-navbar">
 
+        {
+            loading && <Loader isCircle={false} />
+        }
+
         {/* FIRST PART */}
         <div className="col l4 m4 s12 row">
 
@@ -63,7 +60,7 @@ const UserPage = (props: any) => {
             <div className="col s12">
             <div className={styles.wrapperImageStatus} >
                 <img className={styles.image} 
-                    src={avatar || 'https://via.placeholder.com/150'}  
+                    src={avatar}  
                     alt="avatar" 
                 />
                 
@@ -88,10 +85,10 @@ const UserPage = (props: any) => {
             />
 
 
-            {/* STATUS USER --> ONLINE / OFFLINE */}
-            <span className={`col s12 center-align ${styles.verticalMargins} ${styles.statusText}`}>
-                - {status || 'N/A'}
-            </span>
+            {/* STATUS TEXT USER */}
+            <span className={`col s12 center-align ${styles.verticalMargins} ${styles.statusText}`}
+                children={`- ${status || 'N/A'}`}
+            />
             
 
             {/* TOGGLE PROFILE EDITOR */}
@@ -108,27 +105,36 @@ const UserPage = (props: any) => {
                     onSubmit={submitProfileHandler}
                 > 
                     <div className="input-field col s12">
-                        <input id="name" className="validate white-text"
+                        <input className="validate white-text"
+                            id="name"
                             name="name"
                             value={nameState}
                             onChange={e => setNameState(e.target.value)}     
                         />
-                        <label htmlFor="name" className={nameState && 'active'}>Edit name</label>
+                        <label className={nameState && 'active'}
+                            htmlFor="name"
+                            children={'Edit name'}
+                        />
                     </div>
                     
                     <div className="input-field col s12">
-                        <input id="status" className="validate white-text"
+                        <input className="validate white-text"
+                            id="status"
                             name="status"
                             value={statusState}
                             onChange={e => setStatusState(e.target.value)}
                         />
-                        <label htmlFor="status" className={statusState && 'active'}>Edit status</label>
+                        <label className={statusState && 'active'}
+                            htmlFor="status"
+                            children={'Edit status'}
+                        />
                     </div>
 
                     <div className="file-field col s12">
                         <div className="btn border">
                             <span>File</span>
-                            <input type="file" accept="image/*"
+                            <input type="file" 
+                                accept="image/*"
                                 name="avatar"
                                 onChange={changeAvatarHandler}
                             />
@@ -139,7 +145,9 @@ const UserPage = (props: any) => {
                     </div>
 
 
-                    <button className={`btn waves-effect waves-light border col s12 ${styles.btnSubmit}`} type="submit">
+                    <button className={`btn waves-effect waves-light border col s12 ${styles.btnSubmit}`} 
+                        type="submit"
+                    >
                         Submit
                         <i className="material-icons right">send</i>
                     </button>
@@ -167,7 +175,7 @@ const UserPage = (props: any) => {
         <section className={`col l8 m8 s12 row ${styles.padding}`} >
             {
                 posts && 
-                posts.map(post => <Post key={post._id} />)
+                posts.map(post => <Post key={post._id} {...post} />)
             }
             
             {
@@ -183,13 +191,6 @@ const UserPage = (props: any) => {
     )
 }
 
-
-const mapStateToProps = (state: State.IInitialState) => state.personalPage
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    changeProfile: bindActionCreators(changeProfileCreator, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
 
 
 

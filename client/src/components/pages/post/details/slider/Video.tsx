@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react'
-import {useReader, IReader} from '../../hooks/useReader'
+import {useReader, IReader} from '../../../../../hooks/useReader'
 
 export const Video = () => {
     const {reader} = useReader()

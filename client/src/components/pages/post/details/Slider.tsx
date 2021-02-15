@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {Video} from './Video'
+import {Video} from './slider/Video'
 
 export const Slider = () => {
     useEffect(() => {

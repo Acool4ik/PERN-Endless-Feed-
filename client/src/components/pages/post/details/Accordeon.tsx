@@ -1,11 +1,12 @@
 import React from 'react'
-import styles from '../styles/Accordeon.module.css'
-import {Chat} from './Chat'
+import styles from '../../../styles/Accordeon.module.css'
+import {Chat} from './accordeon/Chat'
 
 
 export const Accordeon = () => {
 
 
+    
     return (
     <ul className="collapsible">
         <li className="N/A transparent"> 
